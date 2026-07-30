@@ -27,12 +27,12 @@ const templates = {
       dob: false,
       bloodGroup: false
     },
-    photo: { x: 143, y: 301, w: 376, h: 376, radius: 188 },
+    photo: { x: 151, y: 309, w: 360, h: 360, radius: 180 },
     qr: { x: 257, y: 840, size: 159, margin: 4, level: "L" },
     fields: {
-      teacherName: { x: 112, y: 692, w: 449, size: pt(11.5), minSize: pt(5.5), weight: 800, align: "center", color: "#ffffff", transform: "upper" },
-      designation: { x: 210, y: 766, w: 318, size: pt(7.4), minSize: pt(5.2), weight: 600, color: "#2d0755" },
-      teacherPhone: { x: 210, y: 817, w: 318, size: pt(7.4), minSize: pt(5.2), weight: 600, color: "#2d0755" }
+      teacherName: { x: 170, y: 681, w: 333, size: pt(11.5), minSize: pt(4.2), weight: 800, align: "center", color: "#ffffff", transform: "upper" },
+      designation: { x: 210, y: 748, w: 318, size: pt(7.4), minSize: pt(4.6), weight: 600, color: "#2d0755", prefix: "Designation: " },
+      teacherPhone: { x: 210, y: 799, w: 318, size: pt(7.4), minSize: pt(4.6), weight: 600, color: "#2d0755", prefix: "Mobile No: " }
     }
   }
 };
@@ -250,6 +250,11 @@ function applyTemplate() {
     node.style.transform = config.rotate ? `rotate(${config.rotate}deg)` : "";
     node.style.transformOrigin = "left top";
     node.style.textAlign = config.align || "left";
+    node.style.justifyContent = config.align === "center"
+      ? "center"
+      : config.align === "right"
+        ? "flex-end"
+        : "flex-start";
   }
   renderPreview();
 }
@@ -438,9 +443,10 @@ function drawQrCode(canvas, payload, size, marginModules = 4, errorCorrectionLev
 
 function fitPreviewText(node, config, scale) {
   let size = Math.max(8, config.size * scale);
-  const minSize = Math.max(8, (config.minSize || 8) * scale);
+  const minSize = Math.max(6, (config.minSize || 8) * scale);
   node.style.fontSize = `${size}px`;
-  while ((node.scrollWidth > node.clientWidth || node.scrollHeight > node.clientHeight) && size > minSize) {
+  const availableWidth = Math.max(0, node.clientWidth - 4);
+  while ((measurePreviewText(node) > availableWidth || node.scrollHeight > node.clientHeight) && size > minSize) {
     size -= 0.5;
     node.style.fontSize = `${size}px`;
   }
