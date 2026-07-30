@@ -3,7 +3,7 @@ const TEMPLATE_HEIGHT = 1063;
 const QR_PUBLIC_ORIGIN = "https://arafa-teachers.vercel.app";
 const PDF_WIDTH_PT = (5.7 / 2.54) * 72;
 const PDF_HEIGHT_PT = (9 / 2.54) * 72;
-const FONT_FAMILY = "Poppins, Arial, sans-serif";
+const FONT_FAMILY = '"DM Sans", Arial, sans-serif';
 const PRINT_POINT_SCALE = 3.52;
 const PHOTO_LIMIT_MB = 2;
 const PHOTO_SIZE_ROUNDING_BUFFER_BYTES = 512 * 1024;
@@ -30,7 +30,7 @@ const templates = {
     photo: { x: 151, y: 309, w: 360, h: 360, radius: 180 },
     qr: { x: 257, y: 840, size: 159, margin: 4, level: "L" },
     fields: {
-      teacherName: { x: 170, y: 681, w: 333, size: pt(11.5), minSize: pt(4.2), weight: 800, align: "center", color: "#ffffff", transform: "upper" },
+      teacherName: { x: 170, y: 681, w: 333, size: pt(11.5), minSize: pt(4.2), weight: 800, align: "center", color: "#ffffff", transform: "upper", fitPadding: 24 },
       designation: { x: 210, y: 748, w: 318, size: pt(7.4), minSize: pt(4.6), weight: 600, color: "#2d0755", prefix: "Designation: " },
       teacherPhone: { x: 210, y: 799, w: 318, size: pt(7.4), minSize: pt(4.6), weight: 600, color: "#2d0755", prefix: "Mobile No: " }
     }
@@ -445,7 +445,8 @@ function fitPreviewText(node, config, scale) {
   let size = Math.max(8, config.size * scale);
   const minSize = Math.max(6, (config.minSize || 8) * scale);
   node.style.fontSize = `${size}px`;
-  const availableWidth = Math.max(0, node.clientWidth - 4);
+  const fitPadding = config.fitPadding ? config.fitPadding * scale : 4;
+  const availableWidth = Math.max(0, node.clientWidth - fitPadding);
   while ((measurePreviewText(node) > availableWidth || node.scrollHeight > node.clientHeight) && size > minSize) {
     size -= 0.5;
     node.style.fontSize = `${size}px`;
@@ -807,6 +808,10 @@ function drawFittedText(ctx, text, config) {
   if (!text) return;
   let size = config.size;
   const minSize = config.minSize || 12;
+  const fitPadding = config.fitPadding || 0;
+  const availableWidth = Math.max(1, config.w - fitPadding);
+  const contentX = config.x + fitPadding / 2;
+  const lineBoxHeight = config.coverHeight || config.size * 1.35;
   const cover = config.cover === false ? "" : config.cover || templates[state.templateKey].cover || "";
   if (cover) {
     ctx.fillStyle = cover;
@@ -815,31 +820,32 @@ function drawFittedText(ctx, text, config) {
   ctx.fillStyle = config.color;
   ctx.textBaseline = "top";
   ctx.font = `${config.weight || 700} ${size}px ${FONT_FAMILY}`;
-  while (ctx.measureText(text).width > config.w && size > minSize) {
+  while (ctx.measureText(text).width > availableWidth && size > minSize) {
     size -= 0.5;
     ctx.font = `${config.weight || 700} ${size}px ${FONT_FAMILY}`;
   }
-  let x = config.x;
+  const y = config.y + Math.max(0, (lineBoxHeight - size) / 2);
+  let x = contentX;
   if (config.align === "center") {
-    x = config.x + (config.w - ctx.measureText(text).width) / 2;
+    x = contentX + (availableWidth - ctx.measureText(text).width) / 2;
   } else if (config.align === "right") {
-    x = config.x + config.w - ctx.measureText(text).width;
+    x = contentX + availableWidth - ctx.measureText(text).width;
   }
   if (config.rotate) {
     ctx.save();
-    ctx.translate(config.x, config.y);
+    ctx.translate(contentX, y);
     ctx.rotate((config.rotate * Math.PI) / 180);
-    const rotatedX = config.align === "center" ? (config.w - ctx.measureText(text).width) / 2 : 0;
+    const rotatedX = config.align === "center" ? (availableWidth - ctx.measureText(text).width) / 2 : 0;
     ctx.fillText(text, rotatedX, 0);
     ctx.restore();
-    return { x, y: config.y, width: ctx.measureText(text).width, size };
+    return { x, y, width: ctx.measureText(text).width, size };
   }
   if (config.lines && config.lines > 1) {
     drawWrappedText(ctx, text, config, size);
     return { x: config.x, y: config.y, width: config.w, size };
   }
-  ctx.fillText(text, x, config.y);
-  return { x, y: config.y, width: ctx.measureText(text).width, size };
+  ctx.fillText(text, x, y);
+  return { x, y, width: ctx.measureText(text).width, size };
 }
 
 function drawWrappedText(ctx, text, config, size) {
