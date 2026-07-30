@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#251047" />
+    <title>Arafa Teacher ID Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/teacher-details.css?v=20260731-premium-v1" />
+  </head>
+  <body>
+    <main class="details-shell">
+      <section class="details-card" aria-labelledby="pageTitle">
+        <header class="school-header">
+          <span class="school-mark" aria-hidden="true">AES</span>
+          <div>
+            <p>Official staff identity</p>
+            <h1 id="pageTitle">Teacher ID Details</h1>
+            <span>Arafa English School · Attur, Thrissur</span>
+          </div>
+        </header>
+        <div class="identity">
+          <div class="verified"><i></i> Verified QR record</div>
+          <p class="eyebrow">Faculty member</p>
+          <h2 id="teacherName">—</h2>
+          <p id="designation">—</p>
+        </div>
+        <dl class="details-grid" id="detailsGrid">
+          <div><dt>Mobile</dt><dd><a id="mobile" href="#">—</a></dd></div>
+          <div><dt>Blood group</dt><dd id="bloodGroup">—</dd></div>
+          <div class="wide"><dt>Address</dt><dd id="address">—</dd></div>
+          <div class="wide sensitive"><dt>Aadhaar number</dt><dd id="aadhaarNo">—</dd></div>
+        </dl>
+        <p class="privacy-note"><span aria-hidden="true">✓</span> These details were read directly from the teacher’s official ID QR code.</p>
+        <p class="error-message" id="errorMessage" role="alert"></p>
+      </section>
+    </main>
+    <script src="/teacher-details.js?v=20260731-v2"></script>
+  </body>
+</html>

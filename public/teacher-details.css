@@ -1,0 +1,44 @@
+:root { color-scheme: light; font-family: "DM Sans","Segoe UI",sans-serif; color:#21162d; background:#f5f1f7; }
+* { box-sizing:border-box; }
+body { min-height:100vh; margin:0; background:radial-gradient(circle at 12% 12%,rgba(193,42,165,.16),transparent 28%),radial-gradient(circle at 88% 88%,rgba(232,189,98,.13),transparent 26%),linear-gradient(145deg,#faf8fb,#eee8f2); }
+body::before { content:""; position:fixed; inset:0; pointer-events:none; background-image:radial-gradient(rgba(61,23,103,.1) .7px,transparent .7px); background-size:22px 22px; mask-image:linear-gradient(to bottom,#000,transparent 80%); }
+.details-shell { position:relative; min-height:100vh; display:grid; place-items:center; padding:30px 16px; }
+.details-card { width:min(100%,590px); overflow:hidden; border:1px solid rgba(61,23,103,.1); border-radius:30px; background:rgba(255,255,255,.95); box-shadow:0 38px 100px rgba(37,16,71,.2); }
+.school-header { position:relative; display:flex; align-items:center; gap:17px; padding:28px; overflow:hidden; color:white; background:linear-gradient(125deg,#241044,#45166e 64%,#7e266f); }
+.school-header::after { content:""; position:absolute; width:210px; height:210px; right:-90px; top:-125px; border-radius:50%; background:rgba(255,255,255,.08); }
+.school-mark { display:grid; width:62px; height:62px; flex:0 0 auto; place-items:center; border:1px solid rgba(255,255,255,.38); border-radius:19px; background:rgba(255,255,255,.1); box-shadow:inset 0 1px rgba(255,255,255,.2); font:800 14px Manrope,sans-serif; letter-spacing:.08em; }
+.school-header p,.school-header h1,.school-header span { margin:0; }
+.school-header p { color:#e8bd62; font-size:10px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+.school-header h1 { margin-top:4px; font:800 clamp(23px,6vw,31px)/1.08 Manrope,sans-serif; letter-spacing:-.04em; }
+.school-header div>span { display:block; margin-top:7px; color:rgba(255,255,255,.7); font-size:12px; }
+.identity { position:relative; padding:30px 28px 24px; border-bottom:1px solid #ece6ef; }
+.verified { position:absolute; top:28px; right:28px; display:flex; align-items:center; gap:8px; padding:8px 11px; border-radius:999px; color:#316c52; background:#eaf6ef; font-size:10px; font-weight:800; }
+.verified i { width:7px; height:7px; border-radius:50%; background:#37a56f; box-shadow:0 0 0 3px rgba(55,165,111,.13); }
+.eyebrow { margin:0 0 8px; color:#8b4bab; font-size:10px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+.identity h2 { max-width:72%; margin:0; font:800 clamp(27px,7vw,38px)/1.08 Manrope,sans-serif; letter-spacing:-.045em; }
+.identity>p:last-child { margin:9px 0 0; color:#776582; font-size:15px; font-weight:700; }
+.details-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0; padding:22px 28px 10px; }
+.details-grid>div { min-width:0; padding:16px; border:1px solid #ebe4ee; border-radius:16px; background:#fcfafc; }
+.details-grid .wide { grid-column:1/-1; }
+.details-grid .sensitive { border-color:#e2d4e8; background:linear-gradient(90deg,#fbf6fc,#fff); }
+dt { margin-bottom:7px; color:#94869d; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+dd { margin:0; overflow-wrap:anywhere; color:#2c1b3a; font-size:15px; font-weight:700; line-height:1.5; }
+dd a { color:#512078; text-decoration-color:#c9b4d4; text-underline-offset:4px; }
+.privacy-note,.error-message { margin:0; padding:15px 28px 26px; color:#897c92; font-size:11px; line-height:1.55; }
+.privacy-note { display:flex; align-items:center; gap:8px; }
+.privacy-note span { display:grid; width:20px; height:20px; flex:0 0 auto; place-items:center; border-radius:50%; color:white; background:#4a2370; font-size:10px; }
+.error-message { display:none; color:#a32639; font-weight:700; }
+.details-card.has-error .identity,.details-card.has-error .details-grid,.details-card.has-error .privacy-note { display:none; }
+.details-card.has-error .error-message { display:block; padding-top:28px; }
+@media (max-width:460px) {
+  .details-shell { padding:0; }
+  .details-card { min-height:100vh; border:0; border-radius:0; }
+  .school-header { padding:23px 20px; }
+  .school-mark { width:54px; height:54px; border-radius:16px; }
+  .identity { padding:26px 20px 21px; }
+  .verified { position:static; width:max-content; margin-bottom:18px; }
+  .identity h2 { max-width:100%; }
+  .details-grid { grid-template-columns:1fr; padding:18px 20px 8px; }
+  .details-grid .wide { grid-column:auto; }
+  .privacy-note,.error-message { padding-left:20px; padding-right:20px; }
+}

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#251047" />
+    <meta name="description" content="Official Arafa English School teacher ID card creator." />
+    <title>Arafa English School | Teacher ID Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css?v=20260731-arafa-premium-v1" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <a class="brand-block" href="/" aria-label="Arafa Teacher ID Studio home">
+          <img class="agency-logo" src="/assets/brand/freak-king-logo.jpeg" alt="Freakking Media logo" />
+          <span>
+            <span class="eyebrow">Freakking Media</span>
+            <strong>Arafa Teacher ID Card Creator</strong>
+            <small>Professional identity starts with a professional ID card printing service.</small>
+          </span>
+        </a>
+        <div class="header-meta">
+          <a href="tel:+918111985415">For help and support contact: +91 8111985415</a>
+          <span><i class="status-dot" aria-hidden="true"></i> Live Preview</span>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Official staff identity portal</p>
+          <h1>Create a teacher ID<br /><span>with confidence.</span></h1>
+          <p class="hero-copy">Enter the staff details, position the photograph and review the finished card before submitting it for print.</p>
+        </div>
+        <div class="hero-badge" aria-label="QR enabled">
+          <span>QR</span>
+          <p><strong>Verified details</strong><br />Scan to view staff information</p>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <form class="panel form-panel" id="studentForm" novalidate>
+          <div class="panel-head">
+            <div>
+              <p class="step-label">01 · Staff information</p>
+              <h2 id="formTitle">Teacher details</h2>
+              <p id="formSubtitle">Complete every field exactly as it should appear in the official record.</p>
+            </div>
+            <div class="school-identity">
+              <span class="school-identity-mark">A</span>
+              <span><small>Creating for</small>Arafa English School</span>
+            </div>
+          </div>
+
+          <div class="school-search is-system-field" aria-hidden="true">
+            <input id="schoolSearch" type="hidden" value="Arafa English School - Teachers" />
+            <input id="templateKey" type="hidden" value="template17" />
+            <div id="schoolResults"></div>
+          </div>
+
+          <div class="legacy-student-fields" data-card-mode="student" aria-hidden="true">
+            <input id="studentName" /><input id="admissionNo" />
+            <select id="studentClass"><option value="">Select</option></select>
+            <select id="division"><option value="">Select</option></select>
+            <select id="bloodGroup"><option value="">Select</option></select>
+            <select id="academicYear"><option value="">Select</option></select>
+            <select id="programme"><option value="">Select</option></select>
+            <input id="busRoute" />
+            <select id="dobDay"><option value="">Day</option></select>
+            <select id="dobMonth"><option value="">Month</option></select>
+            <select id="dobYear"><option value="">Year</option></select>
+            <input id="guardianName" /><input id="houseName" /><input id="place" /><input id="phone" />
+          </div>
+
+          <div class="teacher-fields" data-card-mode="teacher">
+            <div class="field-grid">
+              <label>
+                <span>Full name</span>
+                <input id="teacherName" name="teacherName" maxlength="60" autocomplete="name" placeholder="e.g. Fathima Rahman" />
+              </label>
+              <label>
+                <span>Designation</span>
+                <input id="designation" name="designation" maxlength="60" autocomplete="organization-title" placeholder="e.g. Senior Teacher" />
+              </label>
+              <label>
+                <span>Mobile number</span>
+                <span class="phone-input">
+                  <span>+91</span>
+                  <input id="teacherPhone" name="teacherPhone" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="10-digit number" />
+                </span>
+              </label>
+              <label>
+                <span>Blood group</span>
+                <select id="teacherBloodGroup" name="teacherBloodGroup">
+                  <option value="">Choose group</option>
+                  <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                  <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+                </select>
+              </label>
+              <label class="span-full">
+                <span>Residential address</span>
+                <input id="teacherAddress" name="teacherAddress" maxlength="100" autocomplete="street-address" placeholder="House name, place, district" />
+              </label>
+              <label class="span-full">
+                <span>Aadhaar number</span>
+                <input id="aadhaarNo" name="aadhaarNo" inputmode="numeric" maxlength="12" autocomplete="off" placeholder="12-digit Aadhaar number" />
+              </label>
+            </div>
+            <div class="privacy-strip">
+              <span aria-hidden="true">✓</span>
+              <p><strong>QR-enabled details</strong>The QR opens the official details page with the information entered above.</p>
+            </div>
+          </div>
+
+          <div class="upload-section">
+            <div>
+              <p class="step-label">02 · Profile photograph</p>
+              <h3>Upload a clear portrait</h3>
+              <p>Use a front-facing photo with good lighting. Maximum file size: 2 MB.</p>
+            </div>
+            <div class="photo-row">
+              <div class="photo-status"><span>Status</span><strong id="photoStatus">Not selected</strong></div>
+              <label class="file-button">Choose photo<input id="photoInput" type="file" accept="image/*" /></label>
+            </div>
+          </div>
+
+          <p class="message" id="message" role="status" aria-live="polite"></p>
+          <div class="actions">
+            <button type="button" class="primary" id="submitBtn">
+              <span>Create teacher ID</span><span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </form>
+
+        <section class="preview-column" aria-label="Live ID preview">
+          <div class="preview-toolbar">
+            <div>
+              <p class="step-label">03 · Live preview</p>
+              <h2>Your finished card</h2>
+            </div>
+            <span class="preview-pill"><i></i> Updates live</span>
+          </div>
+          <div class="card-stage">
+            <div class="stage-glow"></div>
+            <div class="id-card" id="cardPreview">
+              <img class="template-bg" id="templateBg" alt="Arafa English School teacher ID card" />
+              <img class="photo-layer" id="photoLayer" alt="" />
+              <div class="editable-layer" id="editableLayer"></div>
+              <canvas class="qr-layer" id="qrLayer" aria-label="Teacher details QR code"></canvas>
+              <canvas class="rendered-card-canvas" id="renderedCardCanvas" width="673" height="1063" aria-hidden="true"></canvas>
+            </div>
+            <p class="preview-help">Your preview updates automatically as details are entered.</p>
+          </div>
+        </section>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-top">
+          <div>
+            <p class="eyebrow">Freakking Media</p>
+            <h2>Creative solutions for every business need</h2>
+          </div>
+          <div class="footer-links">
+            <a href="tel:+918111985415"><span aria-hidden="true">☎</span> +91 8111985415</a>
+            <a href="mailto:snehastudiopynkulam@gmail.com"><span aria-hidden="true">✉</span> snehastudiopynkulam@gmail.com</a>
+          </div>
+        </div>
+        <div class="footer-services">
+          <section>
+            <h3>Design Services</h3>
+            <ul>
+              <li>Social Media Poster</li><li>Logo Design</li><li>Menu Design</li>
+              <li>Flyer Design</li><li>Banner Design</li><li>Standee Design</li>
+              <li>Brochure Design</li><li>Catalogue Design</li><li>Portfolio Design</li>
+              <li>ID Card Designing &amp; Printing</li><li>Product Packaging</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Advertising</h3>
+            <ul>
+              <li>Print Advertising</li><li>Broadcast Advertising</li>
+              <li>Outdoor Advertising</li><li>Digital / Online Advertising</li>
+              <li>Social Media Advertising</li><li>Covert / Product Placement</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Development</h3>
+            <ul><li>Website Development</li><li>Web App Development</li></ul>
+          </section>
+          <section>
+            <h3>Media</h3>
+            <ul>
+              <li>Music Editing</li><li>Video Editing</li>
+              <li>Television and Stage Advertisements</li>
+              <li>Film Star Shows</li><li>Musical Programmes</li>
+            </ul>
+          </section>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 FREAKKING MEDIA. All rights reserved.</span>
+          <span>Powered by <a href="https://webappzz.com/" target="_blank" rel="noopener">Webappzz Technologies</a></span>
+        </div>
+      </footer>
+    </main>
+
+    <dialog class="crop-dialog" id="cropDialog">
+      <div class="crop-shell">
+        <div class="dialog-head"><div><p class="step-label">Photo editor</p><h3>Position your portrait</h3></div><button type="button" id="cancelCropBtn" class="icon-button" aria-label="Close">×</button></div>
+        <canvas id="cropCanvas" width="420" height="420"></canvas>
+        <label class="zoom-label"><span>Zoom</span><input id="zoomRange" type="range" min="1" max="3" value="1" step="0.01" /></label>
+        <div class="actions compact"><button type="button" class="primary" id="applyCropBtn">Use this photo</button></div>
+      </div>
+    </dialog>
+
+    <script src="/vendor/qrcode.js?v=2.0.4"></script>
+    <script src="/app.js?v=20260731-premium-v1"></script>
+  </body>
+</html>

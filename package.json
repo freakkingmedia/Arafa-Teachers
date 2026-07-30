@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "node server.js",
+    "export-templates": "node tools/export-psd-bmp.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
